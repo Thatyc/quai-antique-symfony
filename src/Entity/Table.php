@@ -17,6 +17,9 @@ class Table
     #[ORM\Column(length: 255)]
     private ?string $palces = null;
 
+    #[ORM\ManyToOne(inversedBy: 'capacity')]
+    private ?Order $reservation = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -30,6 +33,18 @@ class Table
     public function setPalces(string $palces): self
     {
         $this->palces = $palces;
+
+        return $this;
+    }
+
+    public function getReservation(): ?Order
+    {
+        return $this->reservation;
+    }
+
+    public function setReservation(?Order $reservation): self
+    {
+        $this->reservation = $reservation;
 
         return $this;
     }

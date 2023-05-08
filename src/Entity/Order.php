@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\OrderRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -32,6 +34,17 @@ class Order
 
     #[ORM\Column]
     private ?int $person = null;
+
+    #[ORM\ManyToOne(inversedBy: 'orders')]
+    private ?User $user = null;
+
+    #[ORM\OneToMany(mappedBy: 'reservation', targetEntity: Table::class)]
+    private Collection $capacity;
+
+    public function __construct()
+    {
+        $this->capacity = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -106,6 +119,48 @@ class Order
     public function setPerson(int $person): self
     {
         $this->person = $person;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Table>
+     */
+    public function getCapacity(): Collection
+    {
+        return $this->capacity;
+    }
+
+    public function addCapacity(Table $capacity): self
+    {
+        if (!$this->capacity->contains($capacity)) {
+            $this->capacity->add($capacity);
+            $capacity->setReservation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCapacity(Table $capacity): self
+    {
+        if ($this->capacity->removeElement($capacity)) {
+            // set the owning side to null (unless already changed)
+            if ($capacity->getReservation() === $this) {
+                $capacity->setReservation(null);
+            }
+        }
 
         return $this;
     }
