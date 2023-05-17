@@ -41,6 +41,9 @@ class Order
     #[ORM\OneToMany(mappedBy: 'reservation', targetEntity: Table::class)]
     private Collection $capacity;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $allergies = null;
+
     public function __construct()
     {
         $this->capacity = new ArrayCollection();
@@ -161,6 +164,18 @@ class Order
                 $capacity->setReservation(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAllergies(): ?string
+    {
+        return $this->allergies;
+    }
+
+    public function setAllergies(?string $allergies): self
+    {
+        $this->allergies = $allergies;
 
         return $this;
     }

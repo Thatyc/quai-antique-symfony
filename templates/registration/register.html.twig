@@ -3,24 +3,32 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    {% include "partials/_header.html.twig" %}
-    <div id="body-register" class="container-fuid mt-5 text-center">
-     <div class="d-flex justify-content-center align-items-center">
-		  <div class="form-custom container-lg bg-light mt-lg-4 mt-1 pe-md-5 ps-md-5 pt-3 pb-4 m-2  shadow-sm rounded">
-       {{ form_start(registrationForm) }}
-			 <h1 class="">Creez un compte</h1>
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.name) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-         }) }}
-         {{ form_row(registrationForm.agreeTerms) }}
-     
-        <button type="submit" id="" class="btn">Envoyer</button>
-        {{ form_end(registrationForm) }}
-      </div>
-     </div>
-    </div>
+	{% include "partials/_header.html.twig" %}
+    <div id="main-connexion" class="container">
+			<div class="row">
+			  <div class="col-md-6 mt-5 offset-md-3">
+				<div class="card  my-5">
+				  <div class="card-body cardbody-color p-lg-5">
+					<div class="mb-3">
+                     {{ form_start(registrationForm) }}
+					  <h2 class="text-center text-dark mt-5">Créer un compte</h2>
+                      {{ form_row(registrationForm.email) }}
+					</div>
+					<div class="form-group">
+					{{ form_row(registrationForm.name) }}
+					</div>
+					<div class="mb-3">
+                    {{ form_row(registrationForm.plainPassword, {
+                     label: 'Password'}) }}					
+                     </div>
+					<div class="text-center"><button id="btn-connexion" type="submit" class="btn px-5 mb-5 w-75">Créer un compte</button>
+                    {{ form_end(registrationForm) }}
+					</div>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		  </div>
     {% include "partials/_footer.html.twig" %}
 
 {% endblock %}
