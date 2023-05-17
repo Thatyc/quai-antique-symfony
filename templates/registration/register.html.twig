@@ -3,19 +3,29 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    {% include "partials/_header.html.twig"  %}
-    <h1>Register</h1>
-
-    {{ form_start(registrationForm) }}
+    <div id="body-register" class="container-fuid mt-5 text-center">
+     <div class="d-flex justify-content-center align-items-center">
+		  <div class="form-custom container-lg bg-light mt-lg-4 mt-1 pe-md-5 ps-md-5 pt-3 pb-4 m-2  shadow-sm rounded">
+       {{ form_start(registrationForm) }}
+			 <h1 class="">Creez un compte</h1>
         {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.name) }}
         {{ form_row(registrationForm.plainPassword, {
             label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+         }) }}
+         {{ form_row(registrationForm.agreeTerms) }}
+     
+        <button type="submit" id="" class="btn">Envoyer</button>
+        {{ form_end(registrationForm) }}
+      </div>
+     </div>
+    </div>
     {% include "partials/_footer.html.twig" %}
 
 {% endblock %}
+
+ 
+ 
+
+  
+		

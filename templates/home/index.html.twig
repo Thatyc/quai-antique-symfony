@@ -5,7 +5,7 @@
 {% block body %}
     {% include "partials/_header.html.twig" %}
      <div id="main-haut" class="container-fuid mt-5">
-      <img id="img-main" src="" class="img-fluid center" alt="Restaurant">
+      <img id="img-main" src={{ asset('img/Main.png') }} class="img-fluid center" alt="Restaurant">
       <div class="text-center">
         <a href="/reservation.html" id="btn-R" type="button" class="btn btn-light btn-lg">Réservez</a>
       </div>
@@ -35,10 +35,10 @@
           <a href="/notre-carte.html" id="btn-M1" type="button" class="btn btn-light btn-lg">Notre carte</a>
         </div>
        <div id="photo-menu" class="col-md-4 text-center order-0">
-        <img class="img-fluid rounded" src="./img/Dessert.jpg" alt="Dessert">
+        <img class="img-fluid rounded" src={{ asset('img/Dessert.jpg') }} alt="Dessert">
        </div>
        <div id="photo-menu1" class="col-md-4 text-center order-2">
-        <img class="img-fluid rounded" src="./img/Dessert2.jpg" alt="Dessert 2">
+        <img class="img-fluid rounded" src={{ asset('img/Dessert2.jpg') }} alt="Dessert 2">
        </div>
       </div>
      </div>
@@ -47,13 +47,13 @@
         <i class="bi bi-star-fill"></i>
         <h2 id="tittle-hour">Ouvert du mardi au dimanche soir</h2>
         <i class="bi bi-star-fill"></i>
-        <p style="color: gray; font-size: 1.7rem;">de 19h30 à 23h30</p>
+        <p>de 19h30 à 23h30</p>
       </div>
      </div>
      <div id="main" class="container">
       <div class="row mx-0 mt-5 align-items-center">
         <div id="sidebar" class="col-md-6 text-center">
-          <img id="photo-chef" class="img-fluid rounded" src="./img/man-890885_640.jpg" alt="Chef de cuisine">
+          <img id="photo-chef" class="img-fluid rounded" src={{ asset('img/man-890885_640.jpg') }} alt="Chef de cuisine">
         </div>
         <div id="text-chef" class="col-md-6 text-center">
           <h2 id="tittle-chef">Une histoire de passion</h2>
@@ -67,23 +67,23 @@
      <div class="row mt-5 mb-0 container-fluid">
       <div class="col-lg-4 col-sm-4 col-4">
         <figcaption>Titre de la première photo</figcaption>
-        <img src="/img/Galerie3.jpg" class="w-100 h-25 shadow-1-strong img-show img-gallery rounded mb-4" alt="Plat"/>
+        <img src={{ asset('img/Galerie3.jpg') }} class="w-100 h-25 shadow-1-strong img-show img-gallery rounded mb-4" alt="Plat"/>
         <figcaption>Titre de la première photo</figcaption>
-        <img src="/img/galerie1.jpg" class="w-100 h-50 shadow-1-strong img-show img-gallery rounded mb-4" alt="Plat"/>
+        <img src={{ asset('img/galerie1.jpg') }} class="w-100 h-50 shadow-1-strong img-show img-gallery rounded mb-4" alt="Plat"/>
       </div>
       <div class="col-lg-4 col-sm-4 col-4 gallery">
         <figcaption>Titre de la première photo</figcaption>
-        <img src="/img/galerie2.jpg" class="w-100 h-50 shadow-1-strong img-show img-gallery rounded mb-4" alt="Plat"/>
+        <img src={{ asset('img/galerie2.jpg') }} class="w-100 h-50 shadow-1-strong img-show img-gallery rounded mb-4" alt="Plat"/>
         <figcaption>Titre de la première photo</figcaption>
-        <img src="/img/Galerie4.jpg" class="w-100 h-25 shadow-1-strong img-show img-gallery rounded mb-4" alt="Plat"/>
+        <img  src={{ asset('img/Galerie4.jpg') }} class="w-100 h-25 shadow-1-strong img-show img-gallery rounded mb-4" alt="Plat"/>
       </div>
       <div class="col-lg-4 col-sm-4 col-4 gallery">
         <figcaption>Titre de la première photo</figcaption>
-        <img src="/img/Galerie5.jpg" class="w-100 h-25 shadow-1-strong img-show img-gallery rounded mb-4" alt="Plat"/>
+        <img  src={{ asset('img/Galerie5.jpg') }} class="w-100 h-25 shadow-1-strong img-show img-gallery rounded mb-4" alt="Plat"/>
         <figcaption>Titre de la première photo</figcaption>
-        <img src="/img/Galerie6.jpg" class="w-100 h-25 shadow-1-strong img-show img-gallery rounded mb-4" alt="Plat"/>
+        <img  src={{ asset('img/Galerie6.jpg') }} class="w-100 h-25 shadow-1-strong img-show img-gallery rounded mb-4" alt="Plat"/>
         <figcaption>Titre de la première photo</figcaption>
-        <img src="/img/Galerie8.jpeg" class="w-100 h-25 shadow-1-strong img-show img-gallery rounded mb-4" alt="Plat"/>
+        <img  src={{ asset('img/Galerie8.jpeg') }} class="w-100 h-25 shadow-1-strong img-show img-gallery rounded mb-4" alt="Plat"/>
       </div>
      </div>
      <div class="container text-center mt-0">
@@ -99,14 +99,14 @@
           
         </div>
         <div id="photo-menu2" class="col-md-5 text-center">
-         <img class="img-fluid rounded" src="/img/vin.jpg" alt="Vin">
+         <img class="img-fluid rounded"  src={{ asset('img/vin.jpg') }} alt="Vin">
         </div>
       </div>
      </div>
      <div id="main-menu3" class="container-fluid mb-2 mt-5 mx-0">
       <div class="row align-items-center">
         <div id="photo-durable" class="col-md-5 text-center">
-         <img class="img-fluid rounded" src="/img/DD-848x378.jpg" alt="Arbre">
+         <img class="img-fluid rounded" src={{ asset('img/DD-848x378.jpg') }} alt="Arbre">
         </div>
        <div id="menu3" class="col-md-7 text-center align-items-center order-0">
         <h2 id="tittle-menu3">Une démarche durable</h2>
