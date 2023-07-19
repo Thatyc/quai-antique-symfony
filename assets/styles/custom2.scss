@@ -133,12 +133,12 @@ nav .navbar-nav li a:hover {
     order: -1;
   }
 }
-
+/*
 .img-gallery:hover {
   transform: scale(1.3);
   opacity: 0.9;
 } 
-
+*/
 @media screen and (max-width: 992px) {
   .img-gallery:hover {
     transform: none;
@@ -157,7 +157,17 @@ figcaption {
   text-decoration: underline;
 }
 
-@media screen and (max-width: 375px) {
+.blur {
+  transform: scale(0.9);
+  opacity: 0.6;
+  -webkit-filter: blur(2px);
+  -moz-filter: blur(2px);
+  -o-filter: blur(2px);
+  -ms-filter: blur(2px);
+  filter: blur(2px);
+}
+
+@media screen and (max-width: 380px) {
   #logo {
     display: none;
   }
@@ -165,6 +175,9 @@ figcaption {
     margin-top: 5rem;
   }
 }
+
+
+
 
 /* Notre carte */
 
@@ -182,6 +195,7 @@ figcaption {
 
 #main-connexion{
   margin-top: 10rem;
+  margin-bottom: -15rem;
 }
 
 /* Réservation */
@@ -194,8 +208,8 @@ figcaption {
   width: 200px;
   padding: 10px;
   color: $primary;
-  
 }
+
 
 /* Register */
 

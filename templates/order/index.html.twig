@@ -1,9 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Order index{% endblock %}
+{% block title %}Réservation{% endblock %}
+
 
 {% block body %}
 {% include "partials/_header.html.twig" %}
+   {{ form_start (form) }}
+   {{ form_row (form.nom)}}
+   {{ form_end (form) }}
+    
     <div class="row">
         <div class="col-md-7 mt-5 offset-md-3">
           <div class="mt-5 my-3">
@@ -11,6 +16,7 @@
               <div class="mb-2 text-center">
                 <div class="panel" id="placesPanel"></div>
               </div>
+            
               <h2 class="text-center mt-0">Réservez votre table</h2>
               <div class="mb-2">
                   <label class="fw-bold" for="nom">Votre nom</label>

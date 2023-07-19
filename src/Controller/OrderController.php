@@ -13,13 +13,24 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/order')]
 class OrderController extends AbstractController
 {
-    #[Route('/', name: 'app_order_index', methods: ['GET'])]
-    public function index(OrderRepository $orderRepository): Response
-    {
+    #[Route('/', name: 'app_order_index', methods: ['GET', 'POST'])]
+    public function index(OrderRepository $orderRepository, Request $request): Response
+    {   
+        $order = new Order();
+        $form = $this->createForm(OrderType::class, $order);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $orderRepository->save($order, true);
+
+            return $this->redirectToRoute('app_order_index', [], Response::HTTP_SEE_OTHER);
+        }
+
         return $this->render('order/index.html.twig', [
             'orders' => $orderRepository->findAll(),
         ]);
     }
+
 
     #[Route('/new', name: 'app_order_new', methods: ['GET', 'POST'])]
     public function new(Request $request, OrderRepository $orderRepository): Response
@@ -34,7 +45,7 @@ class OrderController extends AbstractController
             return $this->redirectToRoute('app_order_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('order/new.html.twig', [
+        return $this->render('order/index.html.twig', [
             'order' => $order,
             'form' => $form,
         ]);
@@ -43,7 +54,7 @@ class OrderController extends AbstractController
     #[Route('/{id}', name: 'app_order_show', methods: ['GET'])]
     public function show(Order $order): Response
     {
-        return $this->render('order/show.html.twig', [
+        return $this->render('order/index.html.twig', [
             'order' => $order,
         ]);
     }
@@ -60,7 +71,7 @@ class OrderController extends AbstractController
             return $this->redirectToRoute('app_order_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('order/edit.html.twig', [
+        return $this->render('order/index.html.twig', [
             'order' => $order,
             'form' => $form,
         ]);
