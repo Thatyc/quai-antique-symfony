@@ -2,9 +2,13 @@
 
 {% block title %}Réservation{% endblock %}
 
-
+{# ici tu dois juste inclure le form avec un include tu n'as pas a mettre les labels et les inputs #}
 {% block body %}
 {% include "partials/_header.html.twig" %}
+{{ include('order/_form.html.twig') }}
+{% include "partials/_footer.html.twig" %}
+{% endblock %}
+
    {{ form_start (form) }}
    {{ form_row (form.nom)}}
    {{ form_end (form) }}
