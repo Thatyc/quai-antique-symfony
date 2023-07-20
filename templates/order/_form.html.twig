@@ -11,52 +11,37 @@
               </div>
             
               <h2 class="text-center mt-0">Réservez votre table</h2>
-              <div class="mb-2">
-              {{ form_row(form.name, {
-            label: 'Nom'
-            }) }}
+                <div class="mb-2">
+                 {{ form_row(form.name, {label: 'Nom'}) }}
                   <label class="fw-bold" for="nom">Votre nom</label>
                   <input type="text" class="form-control" id="nom">
-              </div>
-              <div class="mb-2">
-              {{ form_row(form.name, {
-            label: 'Nom'
-            }) }}
-                <label class="fw-bold" for="email">Votre mail</label>
-                <input type="email" class="form-control" id="email">
-              </div>
-              <div class="mb-1">
-              {{ form_row(form.name, {
-            label: 'Nom'
-            }) }}
-                <label class="fw-bold" for="phone">Votre numéro de téléphone</label>
-                <input type="phone" class="form-control" id="phone">
-              </div>
-              <div class="mb-1">
-              {{ form_row(form.name, {
-            label: 'Nom'
-            }) }}
+                </div>
+                 <div class="mb-2">
+                  {{ form_row(form.email, {label: 'Email'}) }}
+                  <label class="fw-bold" for="email">Votre mail</label>
+                  <input type="email" class="form-control" id="email">
+                </div>
+                <div class="mb-1">
+                 {{ form_row(form.phone, {label: 'Téléphone'}) }}
+                 <label class="fw-bold" for="phone">Votre numéro de téléphone</label>
+                 <input type="phone" class="form-control" id="phone">
+               </div>
+               <div class="mb-1">
+                {{ form_row(form.allergies, {label: 'Allergies ?'}) }}
                 <label class="fw-bold" for="phone">Avez-vous des allergies ?</label>
                 <input type="text" class="form-control" id="allergies">
-              </div>
-              <div class="mb-1">
-              {{ form_row(form.name, {
-            label: 'Nom'
-            }) }}
+               </div>
+               <div class="mb-1">
+                {{ form_row(form.person, {label: 'Nombre des couverts'}) }}
                 <label class="fw-bold" for="guesNumber">Nombre de couverts</label>
                 <input type="number" class="form-control" id="guesNumber" value="1">
-              </div>
-              <div class="mb-2">
-              {{ form_row(form.name, {
-            label: 'Nom'
-            }) }}
-                <label class="fw-bold" for="date">Date</label><br>
-		            <input type="date" name="date" id="date" required>
-              </div>
-              <div class="mb-0">
-              {{ form_row(form.name, {
-            label: 'Nom'
-            }) }}
+               </div>
+               <div class="mb-2">
+                {{ form_row(form.date, {label: 'Date'}) }}
+                 <label class="fw-bold" for="date">Date</label><br>
+		             <input type="date" name="date" id="date" required>
+               </div>
+               <div class="mb-0">{{ form_row(form.time, {label: 'Heure'}) }}
                 <label class="fw-bold" for="heure">Choisissez l'heure de la réservation</label><br>
                 <button class="btn btn-ls btn-heure m-2" name="submit" type="button" value="19:30_submit">19:30</button>
                 <button class="btn btn-ls btn-heure m-2" name="submit" type="button" value="20:00_submit">20:00</button>

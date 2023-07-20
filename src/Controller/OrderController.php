@@ -25,10 +25,10 @@ class OrderController extends AbstractController
 
             return $this->redirectToRoute('app_order_index', [], Response::HTTP_SEE_OTHER);
         }
-
         return $this->render('order/index.html.twig', [
-            'orders' => $orderRepository->findAll(),
-        ]);
+            'order' => $order,
+        ]); 
+    
     }
 
 
