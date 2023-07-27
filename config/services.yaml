@@ -20,5 +20,13 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
+    # Add your specific service definition for App\Form\SecurityType
+    App\Form\SecurityType:
+        autowire: true
+
+    # Add your specific service definition for App\Form\OrderType
+    App\Form\OrderType:
+        autowire: true
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

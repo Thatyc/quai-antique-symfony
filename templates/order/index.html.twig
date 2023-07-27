@@ -1,12 +1,50 @@
+{# templates/reservation.html.twig #}
+
 {% extends 'base.html.twig' %}
 
-{% block title %}Réservation{% endblock %}
+{% block title %}Réservez votre table{% endblock %}
 
-{# ici tu dois juste inclure le form avec un include tu n'as pas a mettre les labels et les inputs #}
 {% block body %}
-{% include "partials/_header.html.twig" %}
-{{ include('order/_form.html.twig') }}
-{% include "partials/_footer.html.twig" %}
+  {% include "partials/_header.html.twig" %}
+  <main>
+    <div id="main-reserve" class="container">
+      <div class="row">
+        <div class="col-md-7 offset-md-3">
+          <div class="card cardbody-color mt-5 my-3">
+            {{ form_start(form) }}
+              <div class="mb-2 text-center">
+                <div class="panel" id="placesPanel"></div>
+              </div>
+              <h2 class="text-center mt-0">Réservez votre table</h2>
+              <div class="mb-2">
+                {{ form_row(form.name) }}
+              </div>
+              <div class="mb-2">
+                {{ form_row(form.email) }}
+              </div>
+              <div class="mb-1">
+                {{ form_row(form.phone) }}
+              </div>
+              <div class="mb-1">
+                {{ form_row(form.allergies) }}
+              </div>
+              <div class="mb-1">
+                {{ form_row(form.person) }}
+              </div>
+              <div class="mb-2">
+                {{ form_row(form.date) }}
+              </div>
+              <div class="mb-2">
+                {{ form_row(form.time) }}
+              </div>
+              <div class="text-center">
+                <button type="submit" class="btn btn-gold px-4 mb-5">Réserver</button>
+              </div>
+            {{ form_end(form) }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  {% include "partials/_footer.html.twig" %}
 {% endblock %}
-
-   

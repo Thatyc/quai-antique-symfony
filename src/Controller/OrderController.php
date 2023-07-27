@@ -1,89 +1,64 @@
 <?php
 
+
+
 namespace App\Controller;
 
 use App\Entity\Order;
 use App\Form\OrderType;
 use App\Repository\OrderRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use DateTime;
 
-#[Route('/order')]
 class OrderController extends AbstractController
 {
-    #[Route('/', name: 'app_order_index', methods: ['GET', 'POST'])]
-    public function index(OrderRepository $orderRepository, Request $request): Response
-    {   
-        $order = new Order();
-        $form = $this->createForm(OrderType::class, $order);
-        $form->handleRequest($request);
+    private EntityManagerInterface $entityManager;
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $orderRepository->save($order, true);
-
-            return $this->redirectToRoute('app_order_index', [], Response::HTTP_SEE_OTHER);
-        }
-        return $this->render('order/index.html.twig', [
-            'order' => $order,
-        ]); 
-    
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
     }
 
-
-    #[Route('/new', name: 'app_order_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, OrderRepository $orderRepository): Response
+    #[Route('/order', name: 'app_order')]
+    public function reservation(Request $request): Response
     {
         $order = new Order();
+
         $form = $this->createForm(OrderType::class, $order);
+
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
-            $orderRepository->save($order, true);
+            // Convertir la chaîne de caractères en objet DateTime
+            $timeString = $form->get('time')->getData();
+            dump($timeString);
 
-            return $this->redirectToRoute('app_order_index', [], Response::HTTP_SEE_OTHER);
+            $time = DateTime::createFromFormat('H:i', $timeString);
+            dump($time);
+
+            if ($time) {
+                $order->setTime($time);
+                
+                $this->entityManager->persist($order);
+                $this->entityManager->flush();
+
+                // Ajouter un message de succès pour la réservation
+                $this->addFlash('success', 'Votre réservation a été enregistrée.');
+
+                // Rediriger vers une page de succès ou toute autre page nécessaire.
+                #return $this->redirectToRoute('app_homepage');
+            } else {
+                // Si la conversion échoue, ajouter un message d'erreur
+                $this->addFlash('error', 'Erreur : Heure de réservation invalide.');
+            }
         }
 
         return $this->render('order/index.html.twig', [
-            'order' => $order,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
-    }
-
-    #[Route('/{id}', name: 'app_order_show', methods: ['GET'])]
-    public function show(Order $order): Response
-    {
-        return $this->render('order/index.html.twig', [
-            'order' => $order,
-        ]);
-    }
-
-    #[Route('/{id}/edit', name: 'app_order_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Order $order, OrderRepository $orderRepository): Response
-    {
-        $form = $this->createForm(OrderType::class, $order);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $orderRepository->save($order, true);
-
-            return $this->redirectToRoute('app_order_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->render('order/index.html.twig', [
-            'order' => $order,
-            'form' => $form,
-        ]);
-    }
-
-    #[Route('/{id}', name: 'app_order_delete', methods: ['POST'])]
-    public function delete(Request $request, Order $order, OrderRepository $orderRepository): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$order->getId(), $request->request->get('_token'))) {
-            $orderRepository->remove($order, true);
-        }
-
-        return $this->redirectToRoute('app_order_index', [], Response::HTTP_SEE_OTHER);
     }
 }

@@ -138,14 +138,6 @@ class Order
         return $this;
     }
 
-    /**
-     * @return Collection<int, Table>
-     */
-    public function getCapacity(): Collection
-    {
-        return $this->capacity;
-    }
-
     public function addCapacity(Table $capacity): self
     {
         if (!$this->capacity->contains($capacity)) {
@@ -179,4 +171,5 @@ class Order
 
         return $this;
     }
+ 
 }

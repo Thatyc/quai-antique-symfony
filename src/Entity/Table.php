@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\TableRepository;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Integer;
 
 #[ORM\Entity(repositoryClass: TableRepository::class)]
 #[ORM\Table(name: '`table`')]
@@ -15,7 +16,11 @@ class Table
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $palces = null;
+    private ?string $places = null;
+
+    #[ORM\Column(type: 'integer')]
+    private ?int $numberTable = null;
+    
 
     #[ORM\ManyToOne(inversedBy: 'capacity')]
     private ?Order $reservation = null;
@@ -25,18 +30,30 @@ class Table
         return $this->id;
     }
 
-    public function getPalces(): ?string
+    public function getPlaces(): ?string
     {
-        return $this->palces;
+        return $this->places;
     }
 
-    public function setPalces(string $palces): self
+    public function setPlaces(string $places): self
     {
-        $this->palces = $palces;
+        $this->places = $places;
 
         return $this;
     }
 
+    public function getNumberTable(): ?int
+    {
+        return $this->numberTable;
+    }
+
+    public function setNumberTable(int $numberTable): self
+    {
+        $this->numberTable = $numberTable;
+
+        return $this;
+    }
+    
     public function getReservation(): ?Order
     {
         return $this->reservation;
@@ -48,4 +65,6 @@ class Table
 
         return $this;
     }
+
+    
 }
