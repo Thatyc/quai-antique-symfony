@@ -37,6 +37,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Order::class)]
     private Collection $orders;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $allergies = null;
+
     public function __construct()
     {
         $this->orders = new ArrayCollection();
@@ -150,6 +153,25 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $order->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAllergies(): ?string
+    {
+        return $this->allergies;
+    }
+
+    public function setAllergies(?string $allergies): static
+    {
+        $this->allergies = $allergies;
+
+        return $this;
+    }
+
+    public function setAllergiesFromOrder(Order $order)
+    {
+        $this->allergies = $order->getAllergies();
 
         return $this;
     }

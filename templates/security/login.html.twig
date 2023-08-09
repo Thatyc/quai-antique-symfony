@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Connectez-vous{% endblock %}
+{% block title %}Connectez-vous * Quai-Antique{% endblock %}
 
 {% block body %}
 {% include "partials/_header.html.twig" %}
@@ -15,7 +15,7 @@
             <form class="card-body cardbody-color p-lg-5">
               <div class="mb-3">
                 {% if app.user %}
-                  <div class="mb-3">
+                  <div class="mb-3 text-center">
                     Vous êtes connectez {{ app.user.email }} <a href="{{ path('app_logout') }}">Déconnexion</a>
                   </div>
                 {% endif %}
@@ -28,7 +28,7 @@
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
               </div>
               <div class="text-center">
-                <button class="btn btn-lg btn-primary text-center" type="submit">
+                <button id="btn-connexion" class="btn btn-primary text-center">
                     Se connecter
                  </button>
               </div>

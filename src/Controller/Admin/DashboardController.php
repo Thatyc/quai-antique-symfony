@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Horaire;
 use App\Entity\Menu;
 use App\Entity\Order;
 use App\Entity\Table;
@@ -34,7 +35,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Order', 'fas fa-book-reader', Order::class);
         yield MenuItem::linkToCrud('Table', 'fas fa-tablet', Table::class);
         yield MenuItem::linkToCrud('User', 'fas fa-user', User::class);
-       
-        
+        yield MenuItem::linkToCrud('Horaire', 'fas fa-user', Horaire::class);
     }
 }

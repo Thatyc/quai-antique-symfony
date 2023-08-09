@@ -29,25 +29,21 @@ class Order
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date = null;
 
-    #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTimeInterface $time = null;
-
     #[ORM\Column]
     private ?int $person = null;
 
     #[ORM\ManyToOne(inversedBy: 'orders')]
     private ?User $user = null;
 
-    #[ORM\OneToMany(mappedBy: 'reservation', targetEntity: Table::class)]
-    private Collection $capacity;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $allergies = null;
+   
 
-    public function __construct()
-    {
-        $this->capacity = new ArrayCollection();
-    }
+    #[ORM\ManyToOne(inversedBy: 'orders')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Horaire $heure = null;
+
 
     public function getId(): ?int
     {
@@ -102,18 +98,6 @@ class Order
         return $this;
     }
 
-    public function getTime(): ?\DateTimeInterface
-    {
-        return $this->time;
-    }
-
-    public function setTime(\DateTimeInterface $time): self
-    {
-        $this->time = $time;
-
-        return $this;
-    }
-
     public function getPerson(): ?int
     {
         return $this->person;
@@ -138,28 +122,7 @@ class Order
         return $this;
     }
 
-    public function addCapacity(Table $capacity): self
-    {
-        if (!$this->capacity->contains($capacity)) {
-            $this->capacity->add($capacity);
-            $capacity->setReservation($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCapacity(Table $capacity): self
-    {
-        if ($this->capacity->removeElement($capacity)) {
-            // set the owning side to null (unless already changed)
-            if ($capacity->getReservation() === $this) {
-                $capacity->setReservation(null);
-            }
-        }
-
-        return $this;
-    }
-
+    
     public function getAllergies(): ?string
     {
         return $this->allergies;
@@ -171,5 +134,17 @@ class Order
 
         return $this;
     }
- 
+
+    public function getHeure(): ?Horaire
+    {
+        return $this->heure;
+    }
+
+    public function setHeure(?Horaire $heure): self
+    {
+        $this->heure = $heure;
+
+        return $this;
+    }
+
 }

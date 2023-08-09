@@ -3,13 +3,17 @@
 // src/Form/OrderType.php
 
 namespace App\Form;
+
+use App\Entity\Horaire;
 use App\Entity\Order;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType; 
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -40,18 +44,18 @@ class OrderType extends AbstractType
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd',
             ])
-            ->add('time', ChoiceType::class, [
-                'label' => 'Choisissez l\'heure de la réservation',
-                'choices' => [
-                    '19:30' => '19:30',
-                    '20:00' => '20:00',
-                    '20:30' => '20:30',
-                    '21:00' => '21:00',
-                    '21:30' => '21:30',
-                    '22:00' => '22:00',
-                    '22:30' => '22:30',
+            ->add('heure', EntityType::class, [
+                'class' => Horaire::class,
+                'choices' => $options['horaires'],
+                'choice_label' => function (Horaire $horaire) {
+                    return $horaire->getHeure()->format('H:i');
+                },
+            ])
+            ->add('submit', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn btn-reserver'
                 ],
-                'expanded' => true, // Cette option affiche des boutons plutôt qu'une liste déroulante
+                'label' => 'Réserver'
             ])
             
         ;
@@ -61,6 +65,7 @@ class OrderType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Order::class,
+            'horaires' => [],
         ]);
     }
 }

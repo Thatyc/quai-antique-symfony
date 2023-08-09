@@ -1,22 +1,24 @@
-{# templates/reservation.html.twig #}
-
 {% extends 'base.html.twig' %}
 
-{% block title %}Réservez votre table{% endblock %}
+{% block title %}Réservez votre table * Quai-Antique{% endblock %}
 
 {% block body %}
   {% include "partials/_header.html.twig" %}
   <main>
-    <div id="main-reserve" class="container">
+    <div id="main-reserve" class="container-fluid">
       <div class="row">
         <div class="col-md-7 offset-md-3">
-          <div class="card cardbody-color mt-5 my-3">
-            {{ form_start(form) }}
-              <div class="mb-2 text-center">
-                <div class="panel" id="placesPanel"></div>
+         <div class="card cardbody-color mt-5 my-3">
+            {% set successMessages = app.session.flashbag.get('success') %}
+            {% if successMessages is not empty %}
+              <div class="alert alert-success">
+                {{ successMessages[0] }}
               </div>
+            {% endif %}
+            {{ form_start(form) }}
               <h2 class="text-center mt-0">Réservez votre table</h2>
-              <div class="mb-2">
+              
+              <div class="mb-2 ml-1">
                 {{ form_row(form.name) }}
               </div>
               <div class="mb-2">
@@ -31,14 +33,19 @@
               <div class="mb-1">
                 {{ form_row(form.person) }}
               </div>
+              
               <div class="mb-2">
                 {{ form_row(form.date) }}
               </div>
+              <div class="mb-2 text-center">
+                <div class="panel" id="placesPanel"></div>
+              </div>
               <div class="mb-2">
-                {{ form_row(form.time) }}
+               {{ form_label(form.heure, 'Heure') }}
+               {{ form_widget(form.heure, { 'attr': {'value': form.vars.value.getHeure()|date('H:i')} }) }}
               </div>
               <div class="text-center">
-                <button type="submit" class="btn btn-gold px-4 mb-5">Réserver</button>
+                {{ form_row(form.submit) }}
               </div>
             {{ form_end(form) }}
           </div>
