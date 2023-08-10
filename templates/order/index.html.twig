@@ -16,36 +16,35 @@
               </div>
             {% endif %}
             {{ form_start(form) }}
-              <h2 class="text-center mt-0">Réservez votre table</h2>
+              <h2 class="text-center mt-0 mb-2">Réservez votre table</h2>
               
-              <div class="mb-2 ml-1">
+              <div class="mt-2 mb-3 ml-1 text-center">
                 {{ form_row(form.name) }}
               </div>
-              <div class="mb-2">
+              <div class="mb-3 text-center">
                 {{ form_row(form.email) }}
               </div>
-              <div class="mb-1">
+              <div class="mb-3 text-center">
                 {{ form_row(form.phone) }}
               </div>
-              <div class="mb-1">
+              <div class="mb-3 text-center">
                 {{ form_row(form.allergies) }}
               </div>
-              <div class="mb-1">
+              <div class="mb-3 text-center">
                 {{ form_row(form.person) }}
               </div>
               
-              <div class="mb-2">
+              <div id="order_date" class="mb-3 text-center">
                 {{ form_row(form.date) }}
               </div>
-              <div class="mb-2 text-center">
-                <div class="panel" id="placesPanel"></div>
-              </div>
-              <div class="mb-2">
+              <div class="mb-3 text-center">
                {{ form_label(form.heure, 'Heure') }}
                {{ form_widget(form.heure, { 'attr': {'value': form.vars.value.getHeure()|date('H:i')} }) }}
               </div>
-              <div class="text-center">
-                {{ form_row(form.submit) }}
+              <div class="text-center mb-3">
+                 <button id="btn-reserver" class="btn btn-lg">
+                    Réserver
+                 </button>
               </div>
             {{ form_end(form) }}
           </div>

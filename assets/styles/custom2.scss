@@ -1,5 +1,5 @@
 $primary: #b6a176;
-$secondary: #fff9f9;
+$secondary: rgb(255, 249, 249);
 $gray-primary: #636262;
 
 body{
@@ -40,7 +40,7 @@ nav .navbar-nav li a:hover {
 #btn-connexion,
 .btn-gold,
 #btn-RC,
-.btn-reserver {
+#btn-reserver {
   background-color: $primary; 
   color: $secondary;
   border: 3px solid $primary;
@@ -49,6 +49,10 @@ nav .navbar-nav li a:hover {
 #btn-R {
   margin-top: -20%;
   margin-bottom: -10%;
+}
+
+.btn-reserver {
+  margin-right: 50%;
 }
 
 #btn-M,
@@ -67,17 +71,18 @@ nav .navbar-nav li a:hover {
 #btn-R2:hover,
 #btn-R3:hover,
 .btn-gold:hover,
-#btn-RC:hover {
-  background-color: rgb(255, 255, 255);
-  color: rgba(182, 161, 118, 1);
+#btn-RC:hover,
+#btn-reserver:hover {
+  background-color: $secondary;
+  color: $primary;
   font-weight: bold;
-  border: 3px solid rgba(182, 161, 118, 1);
+  border: 3px solid $primary;
 }
 
 .btn-heure.active {
-  background-color: rgba(182, 161, 118, 1); 
-  color: rgb(255, 255, 255);
-  border: 3px solid rgba(182, 161, 118, 1);
+  background-color: $primary; 
+  color: $secondary;
+  border: 3px solid $primary;
 }
 
 
@@ -85,20 +90,20 @@ nav .navbar-nav li a:hover {
 #btn-M1:hover,
 .btn-heure:hover {
   font-weight: bold;
-  background-color: rgba(182, 161, 118, 1);
-  color: rgb(255, 255, 255);
+  background-color: $primary;
+  color: $secondary;
 }
 
 /* Index */
 
 .fa-star {
-  color: rgba(182, 161, 118, 1);
+  color: $primary;
   height: 50px;
 }
 
 #tittle-resto {
   text-align: center;
-  color: rgba(182, 161, 118, 1);
+  color: $primary;
 }
 
 #sub-tittle {

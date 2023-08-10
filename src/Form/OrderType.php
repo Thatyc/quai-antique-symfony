@@ -51,12 +51,6 @@ class OrderType extends AbstractType
                     return $horaire->getHeure()->format('H:i');
                 },
             ])
-            ->add('submit', SubmitType::class, [
-                'attr' => [
-                    'class' => 'btn btn-reserver'
-                ],
-                'label' => 'Réserver'
-            ])
             
         ;
     }
