@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+#[UniqueEntity(fields: ['email'], message: 'Il existe déjà un compte avec cet email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -127,6 +127,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function __toString()
+    {
+        return $this->name;
+    }
+
     /**
      * @return Collection<int, Order>
      */
@@ -162,17 +167,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->allergies;
     }
 
-    public function setAllergies(?string $allergies): static
+    public function setAllergies(?string $allergies): self
     {
         $this->allergies = $allergies;
 
         return $this;
     }
 
-    public function setAllergiesFromOrder(Order $order)
-    {
-        $this->allergies = $order->getAllergies();
-
-        return $this;
-    }
 }

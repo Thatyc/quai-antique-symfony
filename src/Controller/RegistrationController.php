@@ -33,6 +33,9 @@ class RegistrationController extends AbstractController
                 )
             );
 
+            // Set allergies from the form
+            $user->setAllergies($form->get('allergies')->getData());
+
             $entityManager->persist($user);
             $entityManager->flush();
             // do anything else you need here, like send an email

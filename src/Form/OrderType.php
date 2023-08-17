@@ -6,34 +6,43 @@ namespace App\Form;
 
 use App\Entity\Horaire;
 use App\Entity\Order;
+use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class OrderType extends AbstractType
 {
+    private $security;
+
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $user = $this->security->getUser();
+
         $builder
             ->add('name', TextType::class, [
                 'label' => 'Votre nom',
             ])
             ->add('email', EmailType::class, [
                 'label' => 'Votre mail',
+                'data' => $user ? $user->getUserIdentifier() : null,
             ])
             ->add('phone', TextType::class, [
                 'label' => 'Votre numéro de téléphone',
             ])
             ->add('allergies', TextType::class, [
                 'label' => 'Avez-vous des allergies ?',
-                'required' => false,
+                
             ])
             ->add('person', IntegerType::class, [
                 'label' => 'Nombre de couverts',
