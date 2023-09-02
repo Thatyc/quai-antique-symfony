@@ -38,7 +38,6 @@ class Order
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $allergies = null;
-   
 
     #[ORM\ManyToOne(inversedBy: 'orders')]
     #[ORM\JoinColumn(nullable: false)]
@@ -140,7 +139,7 @@ class Order
         return $this->heure;
     }
 
-    public function setHeure(?Horaire $heure): self
+    public function setHeure(?Horaire $heure): static
     {
         $this->heure = $heure;
 

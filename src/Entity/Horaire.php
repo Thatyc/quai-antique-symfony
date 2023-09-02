@@ -19,24 +19,25 @@ class Horaire
     #[ORM\Column(type: Types::TIME_MUTABLE)]
     private ?\DateTimeInterface $heure = null;
 
-    #[ORM\OneToMany(mappedBy: 'horaire', targetEntity: Order::class)]
-    private Collection $orders;
-
     #[ORM\Column]
     private ?int $places = null;
+
+    #[ORM\OneToMany(mappedBy: 'heure', targetEntity: Order::class)]
+    private Collection $orders;
 
     public function __construct()
     {
         $this->orders = new ArrayCollection();
     }
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
     public function __toString(): string
     {
         return $this->heure->format('H:i'); // Vous pouvez ajuster le format en fonction de vos besoins
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
     }
 
     public function getHeure(): ?\DateTimeInterface
@@ -47,6 +48,18 @@ class Horaire
     public function setHeure(\DateTimeInterface $heure): static
     {
         $this->heure = $heure;
+
+        return $this;
+    }
+
+    public function getPlaces(): ?int
+    {
+        return $this->places;
+    }
+
+    public function setPlaces(int $places): static
+    {
+        $this->places = $places;
 
         return $this;
     }
@@ -81,15 +94,4 @@ class Horaire
         return $this;
     }
 
-    public function getPlaces(): ?int
-    {
-        return $this->places;
-    }
-
-    public function setPlaces(int $places): static
-    {
-        $this->places = $places;
-
-        return $this;
-    }
 }

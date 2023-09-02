@@ -37,7 +37,7 @@ class OrderController extends AbstractController
         if($user instanceof User) {
 
             $order->setEmail($user->getUserIdentifier());
-
+            $order->setName($user->getName());
             $order->setAllergies($user->getAllergies());
             
         } 
@@ -57,6 +57,7 @@ class OrderController extends AbstractController
             if ($user instanceof User) {
                 $user->setAllergies($order->getAllergies());
                 $this->entityManager->persist($user);
+                $this->entityManager->persist($order);
                 $this->entityManager->flush();
             }
 

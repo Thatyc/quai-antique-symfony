@@ -15,7 +15,7 @@
                 {{ successMessages[0] }}
               </div>
             {% endif %}
-            {{ form_start(form) }}
+            {{ form_start(form, {'attr': {'class': 'reservation-form'}}) }}
               <h2 class="text-center mt-0 mb-2">Réservez votre table</h2>
               
               <div class="mt-2 mb-3 ml-1 text-center">
@@ -35,7 +35,7 @@
               </div>
               
               <div id="order_date" class="mb-3 text-center">
-                {{ form_row(form.date) }}
+                {{ form_row(form.date, {'attr': {'id': 'date-field'}}) }}
               </div>
               <div class="mb-3 text-center">
                {{ form_label(form.heure, 'Heure') }}
