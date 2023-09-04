@@ -53,18 +53,20 @@ class OrderController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
-            if ($user instanceof User) {
-                $user->setAllergies($order->getAllergies());
-                $this->entityManager->persist($user);
-                $this->entityManager->persist($order);
-                $this->entityManager->flush();
-            }
+            $selectedDate = $order->getDate();
+            if ($selectedDate instanceof \DateTimeInterface && $selectedDate->format('N') == 1) {
+                $this->addFlash('error', 'Nous sommes fermés les lundis !');
+            } else {
+                if ($user instanceof User) {
+                    $user->setAllergies($order->getAllergies());
+                    $this->entityManager->persist($user);
+                }
+                    $this->entityManager->persist($order);
+                    $this->entityManager->flush();
 
-            $this->addFlash('success', 'Réservation effectuée avec succès !');
-        } else {
-            // Si la conversion échoue, ajouter un message d'erreur
-            $this->addFlash('error', 'Erreur : Heure de réservation invalide.');
+                    $this->addFlash('success', 'Réservation effectuée avec succès !');
+            }
+            
         }
 
         return $this->render('order/index.html.twig', [

@@ -9,6 +9,11 @@
       <div class="row">
         <div class="col-md-7 offset-md-3">
          <div class="card cardbody-color mt-5 my-3">
+            {% for flashMessage in app.flashes('error') %}
+            <div class="alert alert-danger">
+            {{ flashMessage }}
+             </div>
+            {% endfor %}
             {% set successMessages = app.session.flashbag.get('success') %}
             {% if successMessages is not empty %}
               <div class="alert alert-success">
@@ -30,16 +35,15 @@
               <div class="mb-3 text-center">
                 {{ form_row(form.allergies) }}
               </div>
-              <div class="mb-3 text-center">
-                {{ form_row(form.person) }}
-              </div>
-              
               <div id="order_date" class="mb-3 text-center">
                 {{ form_row(form.date, {'attr': {'id': 'date-field'}}) }}
               </div>
               <div class="mb-3 text-center">
                {{ form_label(form.heure, 'Heure') }}
                {{ form_widget(form.heure, { 'attr': {'value': form.vars.value.getHeure()|date('H:i')} }) }}
+              </div>
+              <div class="mb-3 text-center">
+                {{ form_row(form.person) }}
               </div>
               <div class="text-center mb-3">
                  <button id="btn-reserver" class="btn btn-lg">
