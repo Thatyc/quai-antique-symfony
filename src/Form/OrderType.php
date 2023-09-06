@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 class OrderType extends AbstractType
 {
@@ -51,6 +52,9 @@ class OrderType extends AbstractType
                 'label' => 'Date',
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd',
+                'attr' => [
+                    'id' => 'order_date',
+                ]
             ])
             ->add('heure', EntityType::class, [
                 'class' => Horaire::class,
@@ -58,10 +62,19 @@ class OrderType extends AbstractType
                 'choice_label' => function (Horaire $horaire) {
                     return $horaire->getHeure()->format('H:i');
                 },
+                'attr' => [
+                    'id' => 'order_heure',
+                ]
             ])
+            ->add('availablePlaces', HiddenType::class, [
+                'mapped' => false,
+                'attr' => [
+                    'id' => 'order_availablePlaces',
+                ]
+            ]);
             
-        ;
     }
+    
 
     public function configureOptions(OptionsResolver $resolver)
     {

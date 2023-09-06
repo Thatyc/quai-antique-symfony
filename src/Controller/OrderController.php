@@ -14,6 +14,8 @@ use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
+
 
 class OrderController extends AbstractController
 {
@@ -53,10 +55,14 @@ class OrderController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $selectedDate = $order->getDate();
+
             if ($selectedDate instanceof \DateTimeInterface && $selectedDate->format('N') == 1) {
                 $this->addFlash('error', 'Nous sommes fermés les lundis !');
+
             } else {
+
                 if ($user instanceof User) {
                     $user->setAllergies($order->getAllergies());
                     $this->entityManager->persist($user);
@@ -73,5 +79,21 @@ class OrderController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    #[Route('/get-places-disponibles', name: 'get_places_disponibles')]
+    public function getPlacesDisponibles(Request $request)
+    {
+        $selectedDate = $request->request->get('date');
+        $selectedHeure = $request->request->get('heure');
+
+        $placesDisponibles = 0;
+
+        // Effectuez la logique pour obtenir les places disponibles, comme dans l'exemple précédent
+
+        // Retournez le résultat au format JSON
+        return new JsonResponse(['placesDisponibles' => $placesDisponibles]);
+    }
+
+
     
 }

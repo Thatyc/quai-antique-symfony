@@ -43,6 +43,10 @@
                {{ form_widget(form.heure, { 'attr': {'value': form.vars.value.getHeure()|date('H:i')} }) }}
               </div>
               <div class="mb-3 text-center">
+                Places disponibles : <span id="available-places">0</span>
+                <div id="error-message"></div>
+              </div>
+              <div class="mb-3 text-center">
                 {{ form_row(form.person) }}
               </div>
               <div class="text-center mb-3">
