@@ -155,6 +155,24 @@ nav .navbar-nav li a:hover {
   opacity: 0.9;
 } 
 
+.modal-image {
+  max-width: 80%; /* Largeur maximale de l'image agrandie */
+  max-height: 100vh; /* Hauteur maximale de l'image agrandie (80% de la hauteur de la vue) */
+  display: block;
+  margin: 0 auto; /* Pour centrer l'image horizontalement */
+  border: 2px solid rgba(182, 161, 118, 1);
+}
+
+.close-button {
+  position: absolute;
+  top: 8px; /* Réglez la position verticale selon vos besoins */
+  right: 15px; /* Réglez la position horizontale selon vos besoins */
+  font-size: 40px; /* Augmentez la taille du bouton selon vos besoins */
+  cursor: pointer;
+  z-index: 1;
+}
+
+
 @media screen and (max-width: 992px) {
   .img-gallery:hover {
     transform: none;

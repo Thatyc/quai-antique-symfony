@@ -86,14 +86,26 @@ class OrderController extends AbstractController
         $selectedDate = $request->request->get('date');
         $selectedHeure = $request->request->get('heure');
 
-        $placesDisponibles = 0;
+        // Effectuez la logique pour obtenir les places disponibles
+        // Par exemple, recherchez les réservations existantes à la date et à l'heure spécifiées
+        // et calculez le nombre de places disponibles en fonction de la capacité maximale
 
-        // Effectuez la logique pour obtenir les places disponibles, comme dans l'exemple précédent
+        // Exemple de logique (à adapter à votre modèle de données) :
+        $horaireRepository = $this->entityManager->getRepository(Horaire::class);
+        $horaire = $horaireRepository->findOneBy(['heure' => $selectedHeure]);
+
+        if ($horaire instanceof Horaire) {
+            // Récupérez le nombre de places déjà réservées à cet horaire
+            $placesReservees = $horaire->getOrders()->count();
+
+            // Calculez le nombre de places disponibles
+            $placesDisponibles = $horaire->getPlaces() - $placesReservees;
+        } else {
+            $placesDisponibles = 0; // Heure non trouvée
+        }
 
         // Retournez le résultat au format JSON
         return new JsonResponse(['placesDisponibles' => $placesDisponibles]);
     }
-
-
-    
+  
 }

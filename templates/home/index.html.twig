@@ -67,23 +67,28 @@
      <div class="row mt-5 mb-0 container-fluid">
       <div class="col-lg-4 col-sm-4 col-4">
         <figcaption>Titre de la première photo</figcaption>
-        <img src={{ asset('build/images/Galerie3.jpg') }} class="w-100 h-25 shadow-1-strong img-gallery rounded mb-4" alt="Plat"/>
+        <img src={{ asset('build/images/Galerie3.jpg') }} class="w-100 h-25 shadow-1-strong img-gallery rounded mb-4" alt="Plat" data-src={{ asset('build/images/Galerie3.jpg') }}>
         <figcaption>Titre de la première photo</figcaption>
-        <img src={{ asset('build/images/galerie1.jpg') }} class="w-100 h-50 shadow-1-strong img-gallery rounded mb-4" alt="Plat"/>
+        <img src={{ asset('build/images/galerie1.jpg') }} class="w-100 h-50 shadow-1-strong img-gallery rounded mb-4" alt="Plat" data-src={{ asset('build/images/galerie1.jpg') }}>
       </div>
       <div class="col-lg-4 col-sm-4 col-4 gallery">
         <figcaption>Titre de la première photo</figcaption>
-        <img src={{ asset('build/images/galerie2.jpg') }} class="w-100 h-50 shadow-1-strong img-gallery rounded mb-4" alt="Plat"/>
+        <img src={{ asset('build/images/galerie2.jpg') }} class="w-100 h-50 shadow-1-strong img-gallery rounded mb-4" alt="Plat" data-src={{ asset('build/images/galerie2.jpg') }}>
         <figcaption>Titre de la première photo</figcaption>
-        <img  src={{ asset('build/images/Galerie4.jpg') }} class="w-100 h-25 shadow-1-strong img-gallery rounded mb-4" alt="Plat"/>
+        <img  src={{ asset('build/images/Galerie4.jpg') }} class="w-100 h-25 shadow-1-strong img-gallery rounded mb-4" alt="Plat" data-src={{ asset('build/images/Galerie4.jpg') }}>
       </div>
       <div class="mb-0 col-lg-4 col-sm-4 col-4 gallery">
         <figcaption>Titre de la première photo</figcaption>
-        <img id="id" src={{ asset('build/images/Galerie5.jpg') }} class="w-100 h-25 shadow-1-strong img-gallery rounded mb-4" alt="Plat"/>
+        <img id="id" src={{ asset('build/images/Galerie5.jpg') }} class="w-100 h-25 shadow-1-strong img-gallery rounded mb-4" alt="Plat" data-src={{ asset('build/images/Galerie5.jpg') }}>
         <figcaption>Titre de la première photo</figcaption>
-        <img  src={{ asset('build/images/Galerie6.jpg') }} class="w-100 h-25 shadow-1-strong img-gallery rounded mb-4" alt="Plat"/>
+        <img  src={{ asset('build/images/Galerie6.jpg') }} class="w-100 h-25 shadow-1-strong img-gallery rounded mb-4" alt="Plat" data-src={{ asset('build/images/Galerie6.jpg') }}>
         <figcaption>Titre de la première photo</figcaption>
-        <img  src={{ asset('build/images/Galerie8.jpeg') }} class="w-100 h-25 shadow-1-strong img-gallery rounded mb-4" alt="Plat"/>
+        <img  src={{ asset('build/images/Galerie8.jpeg') }} class="w-100 h-25 shadow-1-strong img-gallery rounded mb-4" alt="Plat" data-src={{ asset('build/images/Galerie8.jpeg') }}>
+      </div>
+      <div id="myModal" class="modal">
+        <span class="close close-button">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <div id="caption"></div>
       </div>
       <div class="text-center mt-0">
         <a href={{ path('app_order') }} id="btn-R1" type="button" class="btn btn-light btn-lg">Réservez</a>

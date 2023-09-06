@@ -8,7 +8,7 @@
     <div id="main-reserve" class="container-fluid">
       <div class="row">
         <div class="col-md-7 offset-md-3">
-         <div class="card cardbody-color mt-5 my-3">
+         <div class="card cardbody-color my-3">
             {% for flashMessage in app.flashes('error') %}
             <div class="alert alert-danger">
             {{ flashMessage }}
@@ -21,7 +21,7 @@
               </div>
             {% endif %}
             {{ form_start(form, {'attr': {'class': 'reservation-form'}}) }}
-              <h2 class="text-center mt-0 mb-2">Réservez votre table</h2>
+              <h2 class="text-center mt-3 mb-2">Réservez votre table</h2>
               
               <div class="mt-2 mb-3 ml-1 text-center">
                 {{ form_row(form.name) }}
@@ -42,9 +42,8 @@
                {{ form_label(form.heure, 'Heure') }}
                {{ form_widget(form.heure, { 'attr': {'value': form.vars.value.getHeure()|date('H:i')} }) }}
               </div>
-              <div class="mb-3 text-center">
+              <div class="text-center" id="places-disponibles" data-ajax-url="{{ path('get_places_disponibles') }}">
                 Places disponibles : <span id="available-places">0</span>
-                <div id="error-message"></div>
               </div>
               <div class="mb-3 text-center">
                 {{ form_row(form.person) }}
