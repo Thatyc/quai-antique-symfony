@@ -15,7 +15,7 @@ import { Tooltip, Toast, Popover } from 'bootstrap';
 import './bootstrap';
 // public/assets/js/disable-mondays.js
 
-
+console.log('OK?')
 
 
 
