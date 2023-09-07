@@ -42,6 +42,7 @@ class OrderType extends AbstractType
             ])
             ->add('allergies', TextType::class, [
                 'label' => 'Avez-vous des allergies ?',
+                'required' => false,
                 
             ])
             ->add('person', IntegerType::class, [

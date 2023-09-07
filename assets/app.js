@@ -46,12 +46,9 @@ images.forEach(image => {
   });
 });
 
-// Récupérez l'élément de fermeture de la boîte modale
-const closeModal = document.querySelector('.close');
+const closeModalButton = document.getElementById('closeModalButton');
 
-// Ajoutez un écouteur d'événements au clic sur l'élément de fermeture
-closeModal.addEventListener('click', () => {
-  // Fermez la boîte modale
+closeModalButton.addEventListener('click', () => {
   modal.style.display = 'none';
 });
 
@@ -61,6 +58,9 @@ window.addEventListener('click', event => {
     modal.style.display = 'none';
   }
 });
+
+
+
 
 
 

@@ -10,8 +10,8 @@
     {% endif %}   
     <div id="main-connexion" class="container-fuid">
       <div class="row">
-        <div class="col-md-6 offset-md-3">
-          <div class="card mt-5 my-5">
+        <div class="card col-md-6 mb-3 offset-md-3">
+          <div class=" mt-5 my-5">
             <form class="card-body cardbody-color p-lg-5">
               <div class="mb-3">
                 {% if app.user %}
@@ -20,12 +20,14 @@
                   </div>
                 {% endif %}
                 <h2 class="text-center text-dark mt-5">Connectez-vous</h2>
-                <label for="inputEmail">Email</label>
-                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
+                <div>
+                  <label class="fw-bold" for="inputEmail">Email</label>
+                  <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control mb-3" required autofocus>
+                </div>
                 <div class="mb-3">
-                <label for="inputPassword">Mot de passe</label>
-                <input type="password" name="password" id="inputPassword" class="form-control" required>
-                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                  <label class="fw-bold" for="inputPassword">Mot de passe</label>
+                  <input type="password" name="password" id="inputPassword" class="form-control mb-3" required>
+                  <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                 </div>
                 <div class="text-center">
                  <button id="btn-connexion" class="btn btn-primary text-center">
