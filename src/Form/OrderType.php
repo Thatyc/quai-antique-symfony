@@ -53,9 +53,6 @@ class OrderType extends AbstractType
                 'label' => 'Date',
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd',
-                'attr' => [
-                    'id' => 'order_date',
-                ]
             ])
             ->add('heure', EntityType::class, [
                 'class' => Horaire::class,
@@ -63,15 +60,6 @@ class OrderType extends AbstractType
                 'choice_label' => function (Horaire $horaire) {
                     return $horaire->getHeure()->format('H:i');
                 },
-                'attr' => [
-                    'id' => 'order_heure',
-                ]
-            ])
-            ->add('availablePlaces', HiddenType::class, [
-                'mapped' => false,
-                'attr' => [
-                    'id' => 'order_availablePlaces',
-                ]
             ]);
             
     }

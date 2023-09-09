@@ -44,7 +44,7 @@ class OrderController extends AbstractController
             
         } 
 
-        // Obtenez les horaires disponibles depuis la base de données (exemple)
+        // Obtenir les horaires disponibles depuis la base de données (exemple)
         $horairesDisponibles = $this->entityManager->getRepository(Horaire::class)->findAll();
 
         

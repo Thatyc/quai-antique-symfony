@@ -19,44 +19,29 @@ import './bootstrap';
 // public/assets/js/disable-mondays.js
 
 
-
-
-
-/// Récupérez toutes les images de la galerie
+// Galerie photo
 const images = document.querySelectorAll('.img-gallery');
 
-// Récupérez la boîte modale
 const modal = document.getElementById('myModal');
 
-// Récupérez l'élément d'image de la boîte modale
 const modalImage = document.getElementById('modalImage');
 
-// Parcourez chaque image de la galerie
+// Parcourir chaque image de la galerie
 images.forEach(image => {
-  // Ajoutez un écouteur d'événements au clic sur chaque image
-  image.addEventListener('click', () => {
-    // Affichez la boîte modale
-    modal.style.display = 'block';
+image.addEventListener('click', () => {
+modal.style.display = 'block';
 
-    // Affichez l'image agrandie dans la boîte modale
-    modalImage.src = image.getAttribute('data-src');
+modalImage.src = image.getAttribute('data-src');
 
-    modalImage.classList.add('modal-image');
+modalImage.classList.add('modal-image');
 
-  });
+});
 });
 
-const closeModalButton = document.getElementById('closeModalButton');
-
-closeModalButton.addEventListener('click', () => {
-  modal.style.display = 'none';
-});
-
-// Ajoutez un écouteur d'événements pour fermer la boîte modale en cliquant en dehors de l'image
 window.addEventListener('click', event => {
-  if (event.target === modal) {
-    modal.style.display = 'none';
-  }
+if (event.target === modal) {
+modal.style.display = 'none';
+}
 });
 
 
